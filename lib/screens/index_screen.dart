@@ -1,5 +1,4 @@
 import 'package:fluro/fluro.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pinzi/routes.dart';
 import 'package:pinzi/widgets/custom_page_loader.dart';
