@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:pinzi/screens/index_screen.dart';
 import 'package:pinzi/widgets/custom_page_loader.dart';
 
 class FutureBuilderResponse {
+  bool logged = false;
   FutureBuilderResponse();
 }
 
@@ -17,8 +19,10 @@ class IndexController extends StatelessWidget {
         return CustomPageLoader();
       }
 
+      final logged = FirebaseAuth.instance.currentUser != null;
+
       return IndexScreen(
-        logged: false,
+        logged: logged,
       );
     });
   }

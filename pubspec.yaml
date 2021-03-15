@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   cloud_firestore: ^1.0.1
   firebase_auth: ^1.0.1
   firebase_crashlytics: ^1.0.0
@@ -28,7 +30,7 @@ flutter:
   assets:
     - .env
     - assets/images/
-    - assets/icon/
+    - assets/icons/
     - assets/fonts/
 
 
