@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+
+  function isSignedIn() {
+    return request.auth != null;
+  }
+
+  function getRole(rsc) {
+    return rsc.data.roles[request.auth.uid];
+  }
+
+  function isOneOfRoles(rsc, array) {
+    return isSignedIn() && (getRole(rsc) in array);
+  }
+
+  match /user/{userId}/{anyUserFile=**} {
+    allow read, update, delete: if request.auth.uid == userId;
+    allow create: if request.auth.uid != null;
+  }
+}
+ 
