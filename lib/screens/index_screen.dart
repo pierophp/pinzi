@@ -21,8 +21,6 @@ class IndexScreen extends StatefulWidget {
 class IndexScreenState extends State<IndexScreen> {
   IndexScreenState();
 
-  final GoogleSignIn googleSignIn = GoogleSignIn();
-
   @override
   Widget build(BuildContext context) {
     if (this.widget.logged == true) {
@@ -91,7 +89,7 @@ class IndexScreenState extends State<IndexScreen> {
   }
 
   Future<User?> signInWithGoogle() async {
-    final googleSignInAccount = await googleSignIn.signIn();
+    final googleSignInAccount = await GoogleSignIn().signIn();
 
     if (googleSignInAccount == null) {
       return null;
@@ -116,6 +114,6 @@ class IndexScreenState extends State<IndexScreen> {
   }
 
   Future<void> signOutGoogle() async {
-    await googleSignIn.signOut();
+    await GoogleSignIn().signOut();
   }
 }
