@@ -32,11 +32,11 @@ App Store Connect -> Upload -> Automatically manage signing.
 
 ## Relase for Android
 
-## Gerando a chave
+## Gerando a chave (PowerShell)
 
 ```
 cd "C:\Program Files\Android\Android Studio\jre\bin"
-keytool.exe -genkey -v -keystore c:\Users\MY_USER\dev\key.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias key
+.\keytool.exe -genkey -v -keystore $HOME\.android\debug.keystore -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias key
 ```
 
 Copiar o arquivo android/key.properties.template para android/key.properties.
@@ -63,3 +63,9 @@ flutter pub run flutter_launcher_icons:main
 # Gerar código Hive
 
 flutter packages pub run build_runner build --delete-conflicting-outputs
+
+
+Get SHA1 (PowerShell): 
+`` 
+.\keytool.exe -list -v -keystore $HOME\.android\debug.keystore -alias androiddebugkey -storepass android -keypass android
+`` 
