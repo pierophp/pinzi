@@ -20,7 +20,7 @@ class IndexScreenState extends State<IndexScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Text("Index"),
+        child: Center(child: Text("Index")),
       ),
     );
   }
