@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:pinzi/screens/index_screen.dart';
+import 'package:pinzi/screens/files_screen.dart';
 import 'package:pinzi/widgets/custom_page_loader.dart';
 
 class FutureBuilderResponse {
   FutureBuilderResponse();
 }
 
-class IndexController extends StatelessWidget {
+class FilesController extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<FutureBuilderResponse>(future: () async {
@@ -20,16 +20,16 @@ class IndexController extends StatelessWidget {
 
       final logged = FirebaseAuth.instance.currentUser != null;
 
-      return IndexScreen(
+      return FilesScreen(
         logged: logged,
       );
     });
   }
 }
 
-var indexHandler = Handler(handlerFunc: (
+var filesHandler = Handler(handlerFunc: (
   BuildContext? context,
   Map<String, dynamic> params,
 ) {
-  return IndexController();
+  return FilesController();
 });
