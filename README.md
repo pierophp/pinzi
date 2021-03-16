@@ -60,9 +60,9 @@ flutter build appbundle --obfuscate --split-debug-info=build/app/outputs/symbols
 flutter pub run flutter_launcher_icons:main
 ```
 
-# Gerar código Hive
+# Gerar código Flamingo
 
-flutter packages pub run build_runner build --delete-conflicting-outputs
+flutter pub run build_runner build
 
 
 Get SHA1 (PowerShell): 

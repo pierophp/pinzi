@@ -11,12 +11,15 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  cached_network_image: ^3.0.0-nullsafety
   cloud_firestore: ^1.0.1
   firebase_auth: ^1.0.1
   firebase_crashlytics: ^1.0.0
   dio: ^4.0.0-beta7
   envify: ^2.0.0
   file_picker: ^3.0.0
+  flamingo: ^2.0.0
+  flamingo_annotation: ^0.5.0
   fluro: ^2.0.3
   google_sign_in: ^5.0.0
   package_info: ^2.0.0
@@ -25,6 +28,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^1.11.0
+  flamingo_generator: ^0.9.0
 
 flutter:
   uses-material-design: true
@@ -33,6 +38,39 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/fonts/
+  fonts:
+    - family: Barlow Condensed
+      fonts:
+        - asset: assets/fonts/BarlowCondensed-Regular.ttf
+        - asset: assets/fonts/BarlowCondensed-SemiBold.ttf
+        - asset: assets/fonts/BarlowCondensed-Bold.ttf
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf
+        - asset: assets/fonts/Montserrat-SemiBold.ttf
+        - asset: assets/fonts/Montserrat-Bold.ttf
+    - family: Playfair Display
+      fonts:
+        - asset: assets/fonts/PlayfairDisplay-Regular.ttf
+        - asset: assets/fonts/PlayfairDisplay-SemiBold.ttf
+        - asset: assets/fonts/PlayfairDisplay-Bold.ttf
+    - family: Noto Sans SC
+      fonts:
+        - asset: assets/fonts/NotoSansSC-Black.otf
+        - asset: assets/fonts/NotoSansSC-Bold.otf
+        - asset: assets/fonts/NotoSansSC-Light.otf
+        - asset: assets/fonts/NotoSansSC-Medium.otf
+        - asset: assets/fonts/NotoSansSC-Regular.otf
+        - asset: assets/fonts/NotoSansSC-Thin.otf
+    - family: Noto Sans TC
+      fonts:
+        - asset: assets/fonts/NotoSansTC-Black.otf
+        - asset: assets/fonts/NotoSansTC-Bold.otf
+        - asset: assets/fonts/NotoSansTC-Light.otf
+        - asset: assets/fonts/NotoSansTC-Medium.otf
+        - asset: assets/fonts/NotoSansTC-Regular.otf
+        - asset: assets/fonts/NotoSansTC-Thin.otf
+        
 
 
 
