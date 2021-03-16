@@ -6,6 +6,7 @@ class FileRepository {
     return FirebaseFirestore.instance
         .collection('/user/${user.uid}/files')
         .where('path', isEqualTo: path)
+        .orderBy('title')
         .snapshots();
   }
 }
