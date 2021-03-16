@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:pinzi/screens/index_screen.dart';
+import 'package:pinzi/screens/index/index_screen.dart';
 import 'package:pinzi/widgets/custom_page_loader.dart';
 
 class FutureBuilderResponse {

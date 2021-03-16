@@ -3,6 +3,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:pinzi/routes.dart';
+import 'package:flamingo/flamingo.dart';
 
 class AppInitializer extends StatefulWidget {
   final Widget Function(BuildContext) onDidInitilize;
@@ -40,8 +41,11 @@ class _AppInitializerState extends State<AppInitializer> {
 
       defineRoutes();
 
+      WidgetsFlutterBinding.ensureInitialized();
+
       await Future.wait([
         this.loadEnv(),
+        Flamingo.initializeApp(),
       ]);
     }();
   }

@@ -2,9 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:pinzi/models/file.dart';
 import 'package:pinzi/repositories/file_repository.dart';
 import 'package:pinzi/routes.dart';
-import 'package:pinzi/screens/files_screen.dart';
+import 'package:pinzi/screens/files/files_screen.dart';
 import 'package:pinzi/widgets/custom_page_loader.dart';
 
 class FutureBuilderResponse {
@@ -36,18 +37,20 @@ class FilesController extends StatelessWidget {
       }
 
       return StreamBuilder<QuerySnapshot>(
-          stream:
-              FileRepository().findByUser(FirebaseAuth.instance.currentUser!),
+          stream: FileRepository().findByUserAndPath(
+            FirebaseAuth.instance.currentUser!,
+            '/',
+          ),
           builder: (context, snapshotRoutine) {
-            print(snapshotRoutine.data);
-            print(snapshotRoutine.hasData);
             if (!snapshotRoutine.hasData) {
               return CustomPageLoader();
             }
 
-            print(snapshotRoutine.data);
+            final files = snapshotRoutine.data!.docs
+                .map((item) => File(snapshot: item))
+                .toList();
 
-            return FilesScreen();
+            return FilesScreen(files: files);
           });
     });
   }
