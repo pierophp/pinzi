@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 WidgetSpan buildRubySpan(
   String text, {
-  required String ruby,
   required BuildContext context,
+  String? ruby,
   TextStyle? style,
   TextStyle? rubyStyle,
   GestureTapDownCallback? onTapDown,
@@ -11,9 +12,6 @@ WidgetSpan buildRubySpan(
   GestureTapCallback? onTap,
   GestureTapCancelCallback? onTapCancel,
 }) {
-  assert(text != null);
-  assert(context != null || style != null);
-
   final DefaultTextStyle defaultTextStyle = DefaultTextStyle.of(context);
 
   TextStyle? effectiveTextStyle = style;
@@ -34,29 +32,14 @@ WidgetSpan buildRubySpan(
   );
 
   TextStyle? effectiveRubyTextStyle = rubyStyle;
-  if (style == null || style.inherit)
-    effectiveRubyTextStyle = defaultRubyTextStyle.merge(style);
-  if (MediaQuery.boldTextOverride(context))
-    effectiveRubyTextStyle = effectiveRubyTextStyle!
-        .merge(const TextStyle(fontWeight: FontWeight.bold));
+  if (rubyStyle == null || rubyStyle.inherit) {
+    effectiveRubyTextStyle = defaultRubyTextStyle.merge(rubyStyle);
+  }
 
-  if (ruby != null &&
-      effectiveTextStyle.letterSpacing == null &&
-      effectiveRubyTextStyle!.letterSpacing == null &&
-      ruby.length >= 2 &&
-      text.length >= 2) {
-    double rubyWidth = _getWidth(ruby, effectiveRubyTextStyle);
-    double textWidth = _getWidth(text, effectiveTextStyle);
-
-    if (textWidth > rubyWidth) {
-      var newLetterSpacing = (textWidth - rubyWidth) / ruby.length;
-      effectiveRubyTextStyle = effectiveRubyTextStyle
-          .merge(TextStyle(letterSpacing: newLetterSpacing));
-    } else {
-      var newLetterSpacing = (rubyWidth - textWidth) / text.length;
-      effectiveTextStyle =
-          effectiveTextStyle.merge(TextStyle(letterSpacing: newLetterSpacing));
-    }
+  if (MediaQuery.boldTextOverride(context)) {
+    effectiveRubyTextStyle = effectiveRubyTextStyle!.merge(const TextStyle(
+      fontWeight: FontWeight.bold,
+    ));
   }
 
   var texts = <Widget>[];
@@ -70,11 +53,22 @@ WidgetSpan buildRubySpan(
     );
   }
 
+  final characters = text.toString().split('');
+
   texts.add(
-    Text(
-      text,
+    RichText(
       textAlign: TextAlign.center,
-      style: effectiveTextStyle,
+      text: TextSpan(
+        style: effectiveTextStyle,
+        children: characters
+            .map(
+              (character) => TextSpan(
+                text: character,
+                style: TextStyle(color: Colors.red),
+              ),
+            )
+            .toList(),
+      ),
     ),
   );
 
@@ -85,19 +79,11 @@ WidgetSpan buildRubySpan(
       onTapCancel: onTapCancel,
       onTap: onTap,
       child: Container(
+        padding: EdgeInsets.only(right: 6),
         child: Column(
           children: texts,
         ),
       ),
     ),
   );
-}
-
-double _getWidth(String ruby, TextStyle effectiveRubyTextStyle) {
-  double rubyWidth = ruby.length * effectiveRubyTextStyle!.fontSize!;
-  double totalLetterSpacing = effectiveRubyTextStyle.letterSpacing != null
-      ? ruby.length - 1 * effectiveRubyTextStyle!.letterSpacing!
-      : 0.0;
-
-  return rubyWidth + totalLetterSpacing;
 }

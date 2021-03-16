@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 class RubyTextData {
   final String text;
-  final String ruby;
+  final String? ruby;
   final TextStyle? style;
   final TextStyle? rubyStyle;
   final GestureTapDownCallback? onTapDown;

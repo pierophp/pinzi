@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pinzi/widgets/ruby_text/build_ruby_span.dart';
 import 'package:pinzi/widgets/ruby_text/ruby_text_data.dart';
@@ -36,19 +37,6 @@ class RubyText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    data.map(
-      (data) => buildRubySpan(
-        data.text,
-        ruby: data.ruby,
-        context: context,
-        style: data.style,
-        rubyStyle: data.rubyStyle,
-        onTapDown: data.onTapDown,
-        onTapUp: data.onTapUp,
-        onTap: data.onTap,
-        onTapCancel: data.onTapCancel,
-      ),
-    );
     return Text.rich(
       TextSpan(
         children: data
