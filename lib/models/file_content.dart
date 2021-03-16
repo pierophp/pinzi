@@ -1,6 +1,6 @@
 import 'package:flamingo/flamingo.dart';
 import 'package:flamingo_annotation/flamingo_annotation.dart';
-import 'package:pinzi/models/file_line.dart';
+import 'package:pinzi/models/file_content_line.dart';
 
 part 'file_content.flamingo.dart';
 
@@ -12,7 +12,7 @@ class FileContent extends Document<FileContent> {
   }) : super(id: id, snapshot: snapshot, values: values);
 
   @ModelField()
-  List<FileLine>? lines;
+  List<FileContentLine>? lines;
 
   @override
   Map<String, dynamic> toData() => _$toData(this);

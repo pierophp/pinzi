@@ -35,8 +35,10 @@ Map<String, dynamic> _$toData(FileContent doc) {
 void _$fromData(FileContent doc, Map<String, dynamic> data) {
   final _lines = Helper.valueMapListFromKey<String, dynamic>(data, 'lines');
   if (_lines != null) {
-    doc.lines =
-        _lines.where((d) => d != null).map((d) => FileLine(values: d)).toList();
+    doc.lines = _lines
+        .where((d) => d != null)
+        .map((d) => FileContentLine(values: d))
+        .toList();
   } else {
     doc.lines = null;
   }
