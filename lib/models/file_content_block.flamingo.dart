@@ -10,6 +10,7 @@ part of 'file_content_block.dart';
 enum FileContentBlockKey {
   c,
   p,
+  t,
 }
 
 extension FileContentBlockKeyExtension on FileContentBlockKey {
@@ -19,6 +20,8 @@ extension FileContentBlockKeyExtension on FileContentBlockKey {
         return 'c';
       case FileContentBlockKey.p:
         return 'p';
+      case FileContentBlockKey.t:
+        return 't';
       default:
         throw Exception('Invalid data key.');
     }
@@ -30,6 +33,7 @@ Map<String, dynamic> _$toData(FileContentBlock doc) {
   final data = <String, dynamic>{};
   Helper.writeNotNull(data, 'c', doc.c);
   Helper.writeNotNull(data, 'p', doc.p);
+  Helper.writeNotNull(data, 't', doc.t);
 
   return data;
 }
@@ -38,4 +42,5 @@ Map<String, dynamic> _$toData(FileContentBlock doc) {
 void _$fromData(FileContentBlock doc, Map<String, dynamic> data) {
   doc.c = Helper.valueFromKey<String>(data, 'c');
   doc.p = Helper.valueFromKey<String>(data, 'p');
+  doc.t = Helper.valueListFromKey<String>(data, 't');
 }

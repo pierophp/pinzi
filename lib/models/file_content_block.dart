@@ -16,6 +16,9 @@ class FileContentBlock extends Model {
   @Field()
   String? p;
 
+  @Field()
+  List<String>? t;
+
   @override
   Map<String, dynamic> toData() => _$toData(this);
 

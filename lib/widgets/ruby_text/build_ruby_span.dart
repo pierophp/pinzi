@@ -7,6 +7,8 @@ WidgetSpan buildRubySpan(
   String? ruby,
   TextStyle? style,
   TextStyle? rubyStyle,
+  bool? hideRuby,
+  List<String>? tones,
   GestureTapDownCallback? onTapDown,
   GestureTapUpCallback? onTapUp,
   GestureTapCallback? onTap,
@@ -43,7 +45,7 @@ WidgetSpan buildRubySpan(
   }
 
   var texts = <Widget>[];
-  if (ruby != null) {
+  if (ruby != null && hideRuby != true) {
     texts.add(
       Text(
         ruby,
@@ -53,7 +55,7 @@ WidgetSpan buildRubySpan(
     );
   }
 
-  final characters = text.toString().split('');
+  final characters = text.split('');
 
   texts.add(
     RichText(
@@ -61,12 +63,20 @@ WidgetSpan buildRubySpan(
       text: TextSpan(
         style: effectiveTextStyle,
         children: characters
+            .asMap()
             .map(
-              (character) => TextSpan(
-                text: character,
-                style: TextStyle(color: Colors.red),
+              (i, character) => MapEntry(
+                i,
+                TextSpan(
+                  text: character,
+                  style: TextStyle(
+                      color: getToneColor(
+                    (tones?.length ?? 0) > i ? tones![i] : '0',
+                  )),
+                ),
               ),
             )
+            .values
             .toList(),
       ),
     ),
@@ -86,4 +96,20 @@ WidgetSpan buildRubySpan(
       ),
     ),
   );
+}
+
+Color getToneColor(String tone) {
+  const defaultColors = {
+    '0': Colors.black,
+    '1': Colors.blue,
+    '2': Colors.purple,
+    '3': Colors.green,
+    '4': Colors.red,
+  };
+
+  if (defaultColors[tone] != null) {
+    return defaultColors[tone]!;
+  }
+
+  return Colors.black;
 }

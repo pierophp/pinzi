@@ -15,25 +15,6 @@ class FileRow extends StatelessWidget {
   Widget build(BuildContext context) {
     var blocks = line.blocks!;
 
-    // @todo remove this
-    blocks.add(blocks[0]);
-    blocks.add(blocks[1]);
-    blocks.add(blocks[2]);
-    blocks.add(blocks[3]);
-    blocks.add(blocks[4]);
-
-    blocks.add(blocks[0]);
-    blocks.add(blocks[1]);
-    blocks.add(blocks[2]);
-    blocks.add(blocks[3]);
-    blocks.add(blocks[4]);
-
-    blocks.add(blocks[0]);
-    blocks.add(blocks[1]);
-    blocks.add(blocks[2]);
-    blocks.add(blocks[3]);
-    blocks.add(blocks[4]);
-
     final style = TextStyle(
       fontSize: 20,
     );
@@ -46,9 +27,11 @@ class FileRow extends StatelessWidget {
             .map<RubyTextData>(
               (block) => RubyTextData(
                 block.c!,
-                ruby: this._hidePinyin(block.c!) ? null : block.p!,
+                ruby: block.p,
+                hideRuby: this._hideRuby(block.c!),
                 style: style,
                 rubyStyle: rubyStyle,
+                tones: block.t,
                 onTap: () {
                   print("Selected " + block.c!);
                 },
@@ -60,7 +43,7 @@ class FileRow extends StatelessWidget {
   }
 
   // @todo implement this
-  bool _hidePinyin(String word) {
+  bool _hideRuby(String word) {
     final words = {'為什麼': true};
 
     if (words[word] == true) {
