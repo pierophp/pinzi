@@ -24,34 +24,38 @@ class FilesController extends StatelessWidget {
 
       final logged = FirebaseAuth.instance.currentUser != null;
       if (!logged) {
-        Future.delayed(Duration(seconds: 2), () {
-          router.navigateTo(
-            context,
-            "/",
-            transition: TransitionType.inFromLeft,
-            clearStack: true,
-          );
-        });
+        Future.delayed(
+          Duration(seconds: 2),
+          () {
+            router.navigateTo(
+              context,
+              "/",
+              transition: TransitionType.inFromLeft,
+              clearStack: true,
+            );
+          },
+        );
 
         return CustomPageLoader();
       }
 
       return StreamBuilder<QuerySnapshot>(
-          stream: FileRepository().findByUserAndPath(
-            FirebaseAuth.instance.currentUser!,
-            '/',
-          ),
-          builder: (context, snapshotRoutine) {
-            if (!snapshotRoutine.hasData) {
-              return CustomPageLoader();
-            }
+        stream: FileRepository().findByUserAndPath(
+          FirebaseAuth.instance.currentUser!,
+          '/',
+        ),
+        builder: (context, snapshotFiles) {
+          if (!snapshotFiles.hasData) {
+            return CustomPageLoader();
+          }
 
-            final files = snapshotRoutine.data!.docs
-                .map((item) => File(snapshot: item))
-                .toList();
+          final files = snapshotFiles.data!.docs
+              .map((item) => File(snapshot: item))
+              .toList();
 
-            return FilesScreen(files: files);
-          });
+          return FilesScreen(files: files);
+        },
+      );
     });
   }
 }

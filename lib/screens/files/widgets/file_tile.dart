@@ -141,7 +141,7 @@ class FileTile extends StatelessWidget {
       case "view":
         router.navigateTo(
           context,
-          "/file",
+          "/file/${file.id}",
           transition: TransitionType.inFromRight,
         );
 

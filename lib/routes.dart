@@ -8,5 +8,5 @@ final router = FluroRouter.appRouter;
 void defineRoutes() {
   router.define("/", handler: indexHandler);
   router.define("/files", handler: filesHandler);
-  router.define("/file", handler: fileHandler);
+  router.define("/file/:id", handler: fileHandler);
 }

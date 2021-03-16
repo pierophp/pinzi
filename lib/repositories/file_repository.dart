@@ -9,4 +9,10 @@ class FileRepository {
         .orderBy('title')
         .snapshots();
   }
+
+  Stream<DocumentSnapshot> findOneByUserAndId(User user, String id) {
+    return FirebaseFirestore.instance
+        .doc('/user/${user.uid}/files/$id')
+        .snapshots();
+  }
 }
