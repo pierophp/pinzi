@@ -1,0 +1,26 @@
+{
+  "lines": [
+    [
+      {
+        "c": "為什麼",
+        "p": "Wèi shén me",
+        "isBold": 1,
+        "line": {
+          "type": "h1",
+          "pinyinSpaced": 1,
+          "pinyin_source": "ruby",
+          "url": "https://source-site.org"
+        },
+        "trans": "<b>Por que existe tanto sofrimento?</b>",
+        "h": ""
+      },
+      { "c": "世上", "p": "shì shàng", "isBold": 1, "h": "" },
+      { "c": "會", "p": "huì", "isBold": 1, "h": "" },
+      { "c": "有", "p": "yǒu", "isBold": 1, "h": "" },
+      { "c": "這麼", "p": "zhè me", "isBold": 1, "h": "" },
+      { "c": "多", "p": "duō", "isBold": 1, "h": "" },
+      { "c": "苦難", "p": "kǔ nàn", "isBold": 1, "h": "" },
+      { "c": "？", "p": "", "isBold": 1, "h": "" }
+    ]
+  ]
+}
