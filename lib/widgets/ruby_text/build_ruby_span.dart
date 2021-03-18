@@ -13,6 +13,8 @@ WidgetSpan buildRubySpan(
   GestureTapUpCallback? onTapUp,
   GestureTapCallback? onTap,
   GestureTapCancelCallback? onTapCancel,
+  GestureTapCallback? onDoubleTap,
+  GestureLongPressCallback? onLongPress,
 }) {
   final DefaultTextStyle defaultTextStyle = DefaultTextStyle.of(context);
 
@@ -88,6 +90,8 @@ WidgetSpan buildRubySpan(
       onTapUp: onTapUp,
       onTapCancel: onTapCancel,
       onTap: onTap,
+      onDoubleTap: onDoubleTap,
+      onLongPress: onLongPress,
       child: Container(
         padding: EdgeInsets.only(right: 6),
         child: Column(

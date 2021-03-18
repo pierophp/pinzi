@@ -13,6 +13,8 @@ class RubyText extends StatelessWidget {
   final GestureTapUpCallback? onTapUp;
   final GestureTapCallback? onTap;
   final GestureTapCancelCallback? onTapCancel;
+  final GestureTapCallback? onDoubleTap;
+  final GestureLongPressCallback? onLongPress;
   final TextAlign? textAlign;
   final TextDirection? textDirection;
   final bool? softWrap;
@@ -27,6 +29,8 @@ class RubyText extends StatelessWidget {
     this.onTapUp,
     this.onTap,
     this.onTapCancel,
+    this.onDoubleTap,
+    this.onLongPress,
     this.textAlign,
     this.textDirection,
     this.softWrap,
@@ -53,6 +57,8 @@ class RubyText extends StatelessWidget {
                 onTapUp: data.onTapUp,
                 onTap: data.onTap,
                 onTapCancel: data.onTapCancel,
+                onDoubleTap: data.onDoubleTap,
+                onLongPress: data.onLongPress,
               ),
             )
             .toList(),

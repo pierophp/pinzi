@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pinzi/models/file_content_block.dart';
 import 'package:pinzi/models/file_content_line.dart';
+import 'package:pinzi/screens/files/modals/dictionary_modal.dart';
 import 'package:pinzi/widgets/ruby_text/ruby_text.dart';
 import 'package:pinzi/widgets/ruby_text/ruby_text_data.dart';
 
@@ -32,13 +34,39 @@ class FileRow extends StatelessWidget {
                 style: style,
                 rubyStyle: rubyStyle,
                 tones: block.t,
-                onTap: () {
-                  print("Selected " + block.c!);
+                onLongPress: () {
+                  _openDictionaryModal(context, block);
+                },
+                onDoubleTap: () {
+                  _openDictionaryModal(context, block);
                 },
               ),
             )
             .toList(),
       ),
+    );
+  }
+
+  _openDictionaryModal(
+    BuildContext context,
+    FileContentBlock block,
+  ) {
+    showModalBottomSheet<void>(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16.0),
+      ),
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.white,
+      builder: (BuildContext context) {
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.9,
+          child: DictionaryModal(
+            ideograms: block.c!,
+            pinyin: block.p!,
+          ),
+        );
+      },
     );
   }
 

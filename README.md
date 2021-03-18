@@ -69,3 +69,11 @@ Get SHA1 (PowerShell):
 `` 
 .\keytool.exe -list -v -keystore $HOME\.android\debug.keystore -alias androiddebugkey -storepass android -keypass android
 `` 
+
+# Web
+
+flutter run -d chrome
+
+flutter build web
+
+python -m http.server

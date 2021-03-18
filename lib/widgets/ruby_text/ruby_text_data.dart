@@ -11,6 +11,8 @@ class RubyTextData {
   final GestureTapUpCallback? onTapUp;
   final GestureTapCallback? onTap;
   final GestureTapCancelCallback? onTapCancel;
+  final GestureTapCallback? onDoubleTap;
+  final GestureLongPressCallback? onLongPress;
 
   RubyTextData(
     this.text, {
@@ -23,5 +25,7 @@ class RubyTextData {
     this.onTapUp,
     this.onTap,
     this.onTapCancel,
+    this.onDoubleTap,
+    this.onLongPress,
   });
 }
