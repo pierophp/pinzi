@@ -119,7 +119,7 @@ class DictionaryList {
 // Improve This
 
 class DictionaryMoedictDefinition {
-  List<String> def;
+  String def;
 
   DictionaryMoedictDefinition({
     required this.def,
@@ -149,9 +149,11 @@ class _DictionaryModalState extends State<DictionaryModal> {
 
     Dio().get(url).then(
       (response) {
-        setState(() {
-          dictionaryList = _convertResponseToDictionaryList(response.data);
-        });
+        if (this.mounted) {
+          setState(() {
+            dictionaryList = _convertResponseToDictionaryList(response.data);
+          });
+        }
       },
     );
 
@@ -160,10 +162,12 @@ class _DictionaryModalState extends State<DictionaryModal> {
 
     Dio().get(moedictUrl).then(
       (response) {
-        setState(() {
-          dictionaryMoedict =
-              _convertResponseToDictionaryMoedict(response.data);
-        });
+        if (this.mounted) {
+          setState(() {
+            dictionaryMoedict =
+                _convertResponseToDictionaryMoedict(response.data);
+          });
+        }
       },
     );
 
@@ -233,20 +237,18 @@ class _DictionaryModalState extends State<DictionaryModal> {
   }
 
   DictionaryMoedict _convertResponseToDictionaryMoedict(dynamic data) {
-    print(data["definition"]["traditionalDefinitions"]);
-
     return DictionaryMoedict(
       pinyinDefinitions: (data["definition"]["pinyinDefinitions"] ?? [])
           .map<DictionaryMoedictDefinition>(
             (item) => DictionaryMoedictDefinition(
-              def: item.def,
+              def: item['def'].toString(),
             ),
           )
           .toList(),
       simplifiedDefinitions: (data["definition"]["simplifiedDefinitions"] ?? [])
           .map<DictionaryMoedictDefinition>(
             (item) => DictionaryMoedictDefinition(
-              def: item.def,
+              def: item['def'].toString(),
             ),
           )
           .toList(),
@@ -254,7 +256,7 @@ class _DictionaryModalState extends State<DictionaryModal> {
           (data["definition"]["traditionalDefinitions"] ?? [])
               .map<DictionaryMoedictDefinition>(
                 (item) => DictionaryMoedictDefinition(
-                  def: item.def,
+                  def: item['def'].toString(),
                 ),
               )
               .toList(),
@@ -432,11 +434,9 @@ class _DictionaryModalState extends State<DictionaryModal> {
     if (dictionaryMoedict != null) {
       children.add(DictionaryTitle("Moedict"));
       for (var item in dictionaryMoedict!.traditionalDefinitions) {
-        for (var def in item.def) {
-          children.add(DictionaryDescription(
-            def,
-          ));
-        }
+        children.add(DictionaryDescription(
+          item.def,
+        ));
       }
     }
 
