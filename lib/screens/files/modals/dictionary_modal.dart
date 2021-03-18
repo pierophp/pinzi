@@ -332,6 +332,9 @@ class _DictionaryModalState extends State<DictionaryModal> {
       );
     }
 
+    // Add Open Pleco Button
+    // plecoapi://x-callback-url/s?hw=${dictionary.ideograms}&mode=df&py=${pinyinNumbers}
+
     if (dictionaryList!.pinziPt.length > 0) {
       children.add(DictionaryTitle("Português"));
       for (var item in dictionaryList!.pinziPt) {
