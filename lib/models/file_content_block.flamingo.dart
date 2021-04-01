@@ -31,9 +31,9 @@ extension FileContentBlockKeyExtension on FileContentBlockKey {
 /// For save data
 Map<String, dynamic> _$toData(FileContentBlock doc) {
   final data = <String, dynamic>{};
-  Helper.writeNotNull(data, 'c', doc.c);
-  Helper.writeNotNull(data, 'p', doc.p);
-  Helper.writeNotNull(data, 't', doc.t);
+  Helper.write(data, 'c', doc.c);
+  Helper.write(data, 'p', doc.p);
+  Helper.write(data, 't', doc.t);
 
   return data;
 }

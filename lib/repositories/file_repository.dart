@@ -15,4 +15,15 @@ class FileRepository {
         .doc('/user/${user.uid}/files/$id')
         .snapshots();
   }
+
+  Future<DocumentReference> insert(
+    User user,
+    Map<String, dynamic> data,
+  ) async {
+    final String collectionPath = '/user/${user.uid}/files';
+
+    return await FirebaseFirestore.instance
+        .collection(collectionPath)
+        .add(data);
+  }
 }

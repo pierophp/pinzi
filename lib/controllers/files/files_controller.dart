@@ -53,7 +53,10 @@ class FilesController extends StatelessWidget {
               .map((item) => File(snapshot: item))
               .toList();
 
-          return FilesScreen(files: files);
+          return FilesScreen(
+            files: files,
+            user: FirebaseAuth.instance.currentUser!,
+          );
         },
       );
     });

@@ -10,13 +10,15 @@ class FileContentBlock extends Model {
     Map<String, dynamic>? values,
   }) : super(values: values);
 
-  @Field()
+  @Field(
+    isWriteNotNull: false,
+  )
   String? c;
 
-  @Field()
+  @Field(isWriteNotNull: false)
   String? p;
 
-  @Field()
+  @Field(isWriteNotNull: false)
   List<String>? t;
 
   @override

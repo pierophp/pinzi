@@ -79,6 +79,7 @@ class FileController extends StatelessWidget {
               }
 
               final file = File(snapshot: snapshotFile.data);
+
               final fileContent = FileContent(
                 snapshot: snapshotFileContent.data,
               );

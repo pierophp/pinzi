@@ -28,7 +28,7 @@ extension FileContentLineKeyExtension on FileContentLineKey {
 /// For save data
 Map<String, dynamic> _$toData(FileContentLine doc) {
   final data = <String, dynamic>{};
-  Helper.writeNotNull(data, 'type', doc.type);
+  Helper.write(data, 'type', doc.type);
 
   Helper.writeModelListNotNull(data, 'blocks', doc.blocks);
 
@@ -37,7 +37,7 @@ Map<String, dynamic> _$toData(FileContentLine doc) {
 
 /// For load data
 void _$fromData(FileContentLine doc, Map<String, dynamic> data) {
-  doc.type = Helper.valueFromKey<String>(data, 'type');
+  doc.type = Helper.valueFromKey<String?>(data, 'type');
 
   final _blocks = Helper.valueMapListFromKey<String, dynamic>(data, 'blocks');
   if (_blocks != null) {

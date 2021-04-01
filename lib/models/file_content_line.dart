@@ -11,7 +11,7 @@ class FileContentLine extends Model {
     Map<String, dynamic>? values,
   }) : super(values: values);
 
-  @Field()
+  @Field(isWriteNotNull: false)
   String? type;
 
   @ModelField()
