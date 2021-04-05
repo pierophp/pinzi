@@ -8,14 +8,17 @@ part of 'file_content.dart';
 
 /// Field value key
 enum FileContentKey {
-  lines,
+  type,
+  blocks,
 }
 
 extension FileContentKeyExtension on FileContentKey {
   String get value {
     switch (this) {
-      case FileContentKey.lines:
-        return 'lines';
+      case FileContentKey.type:
+        return 'type';
+      case FileContentKey.blocks:
+        return 'blocks';
       default:
         throw Exception('Invalid data key.');
     }
@@ -25,21 +28,24 @@ extension FileContentKeyExtension on FileContentKey {
 /// For save data
 Map<String, dynamic> _$toData(FileContent doc) {
   final data = <String, dynamic>{};
+  Helper.write(data, 'type', doc.type);
 
-  Helper.writeModelListNotNull(data, 'lines', doc.lines);
+  Helper.writeModelListNotNull(data, 'blocks', doc.blocks);
 
   return data;
 }
 
 /// For load data
 void _$fromData(FileContent doc, Map<String, dynamic> data) {
-  final _lines = Helper.valueMapListFromKey<String, dynamic>(data, 'lines');
-  if (_lines != null) {
-    doc.lines = _lines
+  doc.type = Helper.valueFromKey<String?>(data, 'type');
+
+  final _blocks = Helper.valueMapListFromKey<String, dynamic>(data, 'blocks');
+  if (_blocks != null) {
+    doc.blocks = _blocks
         .where((d) => d != null)
-        .map((d) => FileContentLine(values: d))
+        .map((d) => FileContentBlock(values: d))
         .toList();
   } else {
-    doc.lines = null;
+    doc.blocks = null;
   }
 }

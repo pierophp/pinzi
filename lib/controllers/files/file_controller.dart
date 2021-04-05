@@ -55,8 +55,8 @@ class FileController extends StatelessWidget {
             return CustomPageLoader();
           }
 
-          return StreamBuilder<DocumentSnapshot>(
-            stream: FileContentRepository().findOneByUserAndId(
+          return StreamBuilder<QuerySnapshot>(
+            stream: FileContentRepository().findByUserAndId(
               FirebaseAuth.instance.currentUser!,
               this.id,
             ),
@@ -65,7 +65,7 @@ class FileController extends StatelessWidget {
                 return CustomPageLoader();
               }
 
-              if (snapshotFileContent.data == null) {
+              if (snapshotFileContent.data?.docs.length == 0) {
                 Future.delayed(Duration(seconds: 2), () {
                   router.navigateTo(
                     context,
@@ -80,13 +80,18 @@ class FileController extends StatelessWidget {
 
               final file = File(snapshot: snapshotFile.data);
 
-              final fileContent = FileContent(
-                snapshot: snapshotFileContent.data,
-              );
+              final List<FileContent> fileContents =
+                  snapshotFileContent.data!.docs
+                      .map(
+                        (snapshot) => FileContent(
+                          snapshot: snapshot,
+                        ),
+                      )
+                      .toList();
 
               return FileScreen(
                 file: file,
-                fileContent: fileContent,
+                fileContents: fileContents,
               );
             },
           );

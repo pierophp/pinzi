@@ -2,19 +2,24 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FileContentRepository {
-  Stream<DocumentSnapshot> findOneByUserAndId(User user, String id) {
+  Stream<QuerySnapshot> findByUserAndId(User user, String id) {
     return FirebaseFirestore.instance
-        .doc('/user/${user.uid}/files_contents/$id')
+        .collection('/user/${user.uid}/files/$id/content')
+        .orderBy('sequence')
         .snapshots();
   }
 
   Future<void> insert(
     User user,
     String id,
-    Map<String, dynamic> data,
+    List<dynamic> data,
   ) async {
-    final String documentPath = '/user/${user.uid}/files_contents/$id';
-
-    await FirebaseFirestore.instance.doc(documentPath).set(data);
+    final String collectionPath = '/user/${user.uid}/files/$id/content';
+    var sequence = 0;
+    for (final item in data) {
+      item["sequence"] = sequence;
+      await FirebaseFirestore.instance.collection(collectionPath).add(item);
+      sequence++;
+    }
   }
 }

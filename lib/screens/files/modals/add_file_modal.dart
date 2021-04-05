@@ -57,16 +57,14 @@ class _AddFileModalState extends State<AddFileModal> {
           "path": "/",
           "title": this._titleController.text,
           "type": "file",
+          "version": response.data["text"]["version"],
+          "audio": response.data["text"]["audio"],
         });
 
         await FileContentRepository().insert(
           this.widget.user,
           file.id,
-          {
-            "version": response.data["text"]["version"],
-            "audio": response.data["text"]["audio"],
-            "lines": response.data["text"]["lines"], // .sublist(0, 5)
-          },
+          response.data["text"]["lines"], // .sublist(0, 5)
         );
       }
 

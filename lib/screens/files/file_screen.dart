@@ -6,12 +6,12 @@ import 'package:pinzi/widgets/custom_appbar.dart';
 
 class FileScreen extends StatefulWidget {
   final File file;
-  final FileContent fileContent;
+  final List<FileContent> fileContents;
 
   FileScreen({
     Key? key,
     required this.file,
-    required this.fileContent,
+    required this.fileContents,
   }) : super(key: key);
 
   @override
@@ -32,9 +32,8 @@ class FileScreenState extends State<FileScreen> {
           child: Column(
             children: this
                 .widget
-                .fileContent
-                .lines!
-                .map((line) => FileRow(line: line))
+                .fileContents
+                .map((fileContent) => FileRow(fileContent: fileContent))
                 .toList(),
           ),
         ),

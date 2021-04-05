@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:pinzi/models/file_content.dart';
 import 'package:pinzi/models/file_content_block.dart';
-import 'package:pinzi/models/file_content_line.dart';
 import 'package:pinzi/screens/files/modals/dictionary_modal.dart';
 import 'package:pinzi/widgets/ruby_text/ruby_text.dart';
 import 'package:pinzi/widgets/ruby_text/ruby_text_data.dart';
 
 class FileRow extends StatelessWidget {
-  final FileContentLine line;
+  final FileContent fileContent;
 
   FileRow({
     Key? key,
-    required this.line,
+    required this.fileContent,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var blocks = line.blocks!;
+    var blocks = fileContent.blocks!;
 
     final style = TextStyle(
       fontSize: 20,
